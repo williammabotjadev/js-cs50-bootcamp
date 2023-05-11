@@ -26,7 +26,7 @@ app.get('/getCoinState', (req, res) => {
 app.get('/flipCoinState', (req, res) => {
     let randomNumber = Math.random();
     let apiCoin = randomNumber > .5 ? "Heads" : "Tails";
-    let coinState = apiCoin === "Heads" ? true : false;
+    coinState = apiCoin === "Heads" ? true : false;
     res.send(apiCoin);
 })
 
