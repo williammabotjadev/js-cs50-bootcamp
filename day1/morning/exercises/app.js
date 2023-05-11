@@ -3,16 +3,17 @@
 
 var express = require('express')
 var app = express()
+var students = require('./students')
 
 // use a for loop to create an array with each lowercase letter in the alphabet
 // resulting array should be ['a', 'b', ... 'y', 'z']
 
-// bahahaha i hope this causes a merge conflict so you can practice resolving
-var deleteThis = ['sorry', 'guys']
-for (var i = 0; i < deleteThis.length; i++) {
-    console.log(deleteThis[i]);
-}
+let letters = [];
 
+for (let i = 97; i < 123; i++)
+{
+    letters.push(String.fromCharCode(i));
+}
 
 // use a for loop to generate an app.get function for each endpoint
 // callback function should res.send the letter's index in the alphabet
@@ -20,9 +21,16 @@ for (var i = 0; i < deleteThis.length; i++) {
 // do not use Array.prototype.forEach()
 // first endpoint should be:
 // app.get('/a', function(req, res) { res.send("1") });
-
-
-
+console.log(students.length)
+for (let j = 0; j < letters.length; j++)
+{
+    let char = letters.indexOf(letters[j]) + 1;
+    console.log(char);
+    app.get(`/${letters[j]}`, (req, res) => {
+        res.send(char.toString());
+    })
+}
+    
 
 
 
@@ -31,6 +39,15 @@ for (var i = 0; i < deleteThis.length; i++) {
 // import that array into this file, and write an endpoint at GET /partners
 // that randomly pairs students. feel free to use whatever data structure you
 // see fit
+app.get('/partners', (req, res) => {
+    let index_one = Math.round(Math.random() * 10);
+
+    let index_two = Math.round(Math.random() * 10 + 12);
+
+    let partner_one = students[index_one];
+    let partner_two = students[index_two];
+    res.send(partner_one + " and " + partner_two);
+})
 
 
 

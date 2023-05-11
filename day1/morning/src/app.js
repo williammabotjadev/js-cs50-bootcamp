@@ -32,7 +32,18 @@ app.get('/flipCoinState', (req, res) => {
     let apiCoin = randomNumber > .5 ? "Heads" : "Tails";
     coinState = apiCoin === "Heads" ? true : false;
     res.send(apiCoin);
-})
+});
+
+app.get('/getCode/:char', (req, res) => {
+    if (req.params.char.length > 1) {
+        return res.status(400).send("Sorry, No Char Found");
+    }
+
+    if (req.params.char.charCodeAt(0) >= 97)
+    {
+        res.status(200).send(String(req.params.char.charCodeAt(0)));
+    }
+});
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
