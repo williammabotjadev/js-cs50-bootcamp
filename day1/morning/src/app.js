@@ -23,6 +23,10 @@ app.get('/getCoinState', (req, res) => {
     res.send(state);
 });
 
+app.get('/flipCoinState/:hello', (req, res) => {
+    res.send(req.params.hello);
+});
+
 app.get('/flipCoinState', (req, res) => {
     let randomNumber = Math.random();
     let apiCoin = randomNumber > .5 ? "Heads" : "Tails";
